@@ -30,3 +30,21 @@
 *.exe
 *.out
 *.app
+
+libs/x86/*
+libx/x64/*
+
+# VS Studio Generated
+samples/OWTP2PSampleMFC/.vs
+samples/OWTP2PSampleMFC/P2PSampleMFC/Debug
+samples/OWTP2PSampleMFC/P2PSampleMFC/x64
+samples/OWTP2PSampleMFC/P2PSampleMFC/x86
+samples/OWTP2PSampleMFC/x64
+samples/OWTP2PSampleMFC/Debug
+
+samples/ConfSampleMFC/.vs
+samples/ConfSampleMFC/ConfSampleMFC/Debug
+samples/ConfSampleMFC/ConfSampleMFC/x64
+samples/ConfSampleMFC/ConfSampleMFC/x86
+samples/ConfSampleMFC/x64
+samples/ConfSampleMFC/Debug
