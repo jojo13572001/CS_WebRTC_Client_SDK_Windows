@@ -81,8 +81,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\workspace\boost_1_67_0;D:\workspace\socket.io-client-cpp_110\src;D:\sjc\worksapce\pack4.3\windows\CS_WebRTC_Client_SDK_Windows.v4.3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\sjc\worksapce\pack4.3\windows\CS_WebRTC_Client_SDK_Windows.v4.3\libs\x86;D:\workspace\socket.io-client-cpp_110\build\Debug;D:\workspace\boost_1_67_0\stage\lib;C:\Program Files (x86)\IntelSWTools\Intel(R) Media SDK 2019 R1\Software Development Kit\lib\win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
