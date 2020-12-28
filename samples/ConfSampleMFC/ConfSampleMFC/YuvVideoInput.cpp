@@ -16,10 +16,10 @@ FileFrameGenerator::FileFrameGenerator(int width, int height, int fps) {
     frame_data_size_ = size + 2 * qsize;
     fopen_s(&fd, "./source.yuv", "rb");
     if (!fd) {
-        std::cout << "failed to open the source.yuv." << std::endl;
+        LOG(L"failed to open the source.yuv.\n");
     }
     else {
-        std::cout << "sucessfully open the source.yuv." << std::endl;
+        LOG(L"sucessfully open the source.yuv.\n");
     }
 }
 

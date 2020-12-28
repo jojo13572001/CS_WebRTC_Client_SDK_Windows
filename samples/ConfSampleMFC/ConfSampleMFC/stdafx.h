@@ -52,4 +52,9 @@
 #endif
 #endif
 
+#if defined(DEBUG) || defined(_DEBUG)
+#define LOG(x) OutputDebugStringW((std::wstring(L"[ConfSampleMFC]") + x).c_str())
+#else
+#define LOG(x)
+#endif
 

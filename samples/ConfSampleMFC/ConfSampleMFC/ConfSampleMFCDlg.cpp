@@ -122,12 +122,14 @@ string getToken(const string& addr, bool verify_peer) {
     std::string status_message;
     std::getline(response_stream, status_message);
     if (!response_stream || http_version.substr(0, 5) != "HTTP/") {
-      std::cout << "Invalid response\n";
+        LOG(L"Invalid response\n");
       return "";
     }
     if (status_code != 200) {
-      std::cout << "Response returned with status code " << status_code << "\n";
-      return "";
+        std::wostringstream logStr;
+        logStr << L"Response returned with status code " << status_code << endl;
+        LOG(logStr.str());
+        return "";
     }
 
     // Read the response headers, which are terminated by a blank line.
@@ -135,9 +137,13 @@ string getToken(const string& addr, bool verify_peer) {
 
     // Process the response headers.
     std::string header;
+    std::wostringstream logStr;
+    
+    LOG(logStr.str());
     while (std::getline(response_stream, header) && header != "\r")
-      std::cout << header << "\n";
-    std::cout << "\n";
+      logStr << std::wstring(header.begin(), header.end()) << endl;
+      LOG(logStr.str());
+    LOG(L"\n");
 
     std::ostringstream token_stream;
 
@@ -155,7 +161,9 @@ string getToken(const string& addr, bool verify_peer) {
       throw boost::system::system_error(error);
     return token_stream.str();
   } catch (std::exception& e) {
-    std::cout << "Exception: " << e.what() << "\n";
+      std::wostringstream logStr;
+      logStr << L"Exception: " << e.what() << endl;
+      LOG(logStr.str());
   }
 
   return "";
@@ -222,16 +230,20 @@ void mix(const std::string& addr, const string& room_id, const std::string& pub_
     std::string status_message;
     std::getline(response_stream, status_message);
     if (!response_stream || http_version.substr(0, 5) != "HTTP/") {
-      std::cout << "Invalid response\n";
+      LOG(L"Invalid response\n");
       return;
     }
     if (status_code != 200) {
-      std::cout << "Response returned with status code " << status_code << "\n";
+        std::wostringstream logStr;
+        logStr << "Response returned with status code " << status_code << endl;
+        LOG(logStr.str());
       return;
     }
     return;
   } catch (std::exception& e) {
-    std::cout << "Exception: " << e.what() << "\n";
+      std::wostringstream logStr;
+      logStr << "Exception: " << e.what() << endl;
+      LOG(logStr.str());
   }
 
   return;
@@ -417,15 +429,15 @@ void CConfSampleMFCDlg::OnStreamAdded(std::shared_ptr<owt::conference::RemoteStr
     forward_subscription_ = subscription;
     //forward_subscription_->AddObserver(sub_observer_);
     remote_forward_stream_->AttachVideoRenderer(render_forward_window_);
-    std::cout << "Subscribe forward stream succeed" << endl;
+    LOG(L"Subscribe forward stream succeed\n");
   },
     [=](std::unique_ptr<Exception>) {
-    std::cout << "Subscribe forward stream failed" << endl;
+    LOG(L"Subscribe forward stream failed\n");
   });
 }
 
 void CConfSampleMFCDlg::OnServerDisconnected() {
-  SetDlgItemText(IDC_EDIT1, L"Server disconnected.");
+  SetDlgItemText(IDC_EDIT1, L"Server disconnected.\n");
 }
 
 
@@ -436,11 +448,11 @@ void CConfSampleMFCDlg::OnBnClickedButton1()
   CWnd* forward_video_window = GetDlgItem(IDC_STATIC9);
   HWND forward_video_handle = forward_video_window->GetSafeHwnd();
   CConfServer serverUrlDlg;
-  serverUrlDlg.SetValue(L"https://example.com:3004/CreateToken");
+  serverUrlDlg.SetValue(L"https://172.21.4.95:3004/CreateToken");
   if (serverUrlDlg.DoModal() == IDOK) {
     // Connect to the server.
     IceServer ice;
-    ice.urls.push_back("stun:61.152.239.56");
+    ice.urls.push_back("stun:stun4.l.google.com:19302");
     ice.username = "";
     ice.password = "";
     std::vector<IceServer> ice_servers;
@@ -609,7 +621,9 @@ void CConfSampleMFCDlg::OnBnClickedButton4()
     publication_->AddObserver(pub_observer_);
     std::string pub_id = publication_->Id();
     std::string room_id = conference_info_->Id();
-    std::cout << "publication id is:" << pub_id << std::endl;
+    std::wostringstream logStr;
+    logStr << L"publication id is:" << std::wstring(pub_id.begin(), pub_id.end()) << endl;
+    LOG(logStr.str());
     mix(server_url_, room_id, pub_id, false);
     SetDlgItemText(IDC_EDIT1, L"publish succeeded!"); 
   },

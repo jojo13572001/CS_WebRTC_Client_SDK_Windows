@@ -26,10 +26,10 @@ bool DirectVideoEncoder::InitEncoderContext(owt::base::Resolution & resolution, 
     fopen_s(&fd_, videopath.c_str(), "rb");
 
     if (!fd_) {
-        std::cout << "Failed to open the source.h264" << std::endl;
+        LOG(L"Failed to open the source.h264\n");
     }
     else {
-        std::cout << "Successfully open the source.h264" << std::endl;
+        LOG(L"Successfully open the source.h264\n");
     }
     return true;
 }

@@ -32,45 +32,45 @@ class LocalScreenObserver : public owt::base::LocalScreenStreamObserver {
 class ConfPubObserver : public owt::base::PublicationObserver {
 public:
     void OnEnded() { 
-        std::cout << "ended" << std::endl; 
+        LOG(L"ended\n"); 
     }
 
     void OnMute(owt::base::TrackKind track_kind) { 
-        std::cout << "on video/audio muted" << std::endl; 
+        LOG(L"on video/audio muted\n");
     }
 
     void OnUnmute(owt::base::TrackKind track_kind) {
-        std::cout << "on video/audio unmuted" << std::endl; 
+        LOG(L"on video/audio unmuted\n");
     }
 
 	void OnError(std::unique_ptr<owt::base::Exception> failure) {
-		std::cout << "on video/audio error" << std::endl;
+        LOG(L"on video/audio error\n");
 	}
 };
 
 class ConfSubObserver : public owt::base::SubscriptionObserver {
 public:
     void OnEnded() {
-        std::cout << "ended" << std::endl;
+        LOG(L"ended\n");
     }
 
     void OnMute(owt::base::TrackKind track_kind) {
-        std::cout << "on video/audio muted" << std::endl;
+        LOG(L"on video/audio muted\n");
     }
 
     void OnUnmute(owt::base::TrackKind track_kind) {
-        std::cout << "on video/audio unmuted" << std::endl;
+        LOG(L"on video/audio unmuted\n");
     }
 
 	void OnError(std::unique_ptr<owt::base::Exception> failure) {
-		std::cout << "on video/audio error" << std::endl;
+        LOG(L"on video/audio error\n");
 	}
 
 };
 
 class ForwardStreamObserver : public owt::base::StreamObserver {
     void OnUpdated() {
-        std::cout << "stream updated" << std::endl;
+        LOG(L"stream updated\n");
     }
 };
 
