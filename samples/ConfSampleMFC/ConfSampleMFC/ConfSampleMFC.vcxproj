@@ -133,7 +133,7 @@
       <AdditionalDependencies>crypt32.lib;secur32.lib;ws2_32.lib;dmoguids.lib;msdmo.lib;wmcodecdspuuid.lib;amstrmid.lib;strmiids.lib;mfuuid.lib;mf.lib;mfplat.lib;d3d9.lib;d3d11.lib;dxgi.lib;dxva2.lib;owt-debug.lib;sioclient_tls.lib;libboost_date_time-vc142-mt-sgd-x64-1_75.lib;libboost_random-vc142-mt-sgd-x64-1_75.lib;libboost_system-vc142-mt-sgd-x64-1_75.lib;libboost_regex-vc142-mt-sgd-x64-1_75.lib;libmfx_vs2015.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>
       </AdditionalOptions>
-      <AdditionalLibraryDirectories>C:\Users\YenBe\Documents\workspace\boost_1_75_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\YenBe\Documents\workspace\boost_1_75_0\stage\lib;C:\owt-client-native\src\out;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>

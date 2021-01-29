@@ -198,7 +198,7 @@ void CP2PSampleMFCDlg::OnBnClickedConnectButton()
 	HWND video_handle = video_window->GetSafeHwnd();
 	CPeerServer peerServerDlg;
 	peerServerDlg.SetUrlValue(L"https://mrtc.myviewboard.cloud");
-	peerServerDlg.SetIdValue(L"client3");
+	peerServerDlg.SetIdValue(L"2");
 	if (peerServerDlg.DoModal() == IDOK) {
 		//Connect to the server.
 		if (signaling_channel_.get() == nullptr) {
@@ -244,7 +244,7 @@ void CP2PSampleMFCDlg::OnBnClickedConnectButton()
 void CP2PSampleMFCDlg::OnBnClickedRemoteButton()
 {
 	CRemotePeer peerIDDlg;
-	peerIDDlg.SetValue(L"client1");
+	peerIDDlg.SetValue(L"1");
 	if (peerIDDlg.DoModal() == IDOK) {
 		CString peer_id = peerIDDlg.GetValue();
 		CT2CA pszConvertedId(peer_id);
@@ -257,7 +257,7 @@ void CP2PSampleMFCDlg::OnBnClickedRemoteButton()
 void CP2PSampleMFCDlg::OnBnClickedPublishButton()
 {
 	if (!local_stream_.get()) {
-		ldsp_.reset(new LocalDesktopStreamParameters(true, true));
+		ldsp_.reset(new LocalDesktopStreamParameters(false, true));
 		ldsp_->SourceType(LocalDesktopStreamParameters::DesktopSourceType::kFullScreen);
 		std::unique_ptr<LocalScreenStreamObserver> observer = std::make_unique<LocalScreenStreamObserver>();
 		local_stream_ = LocalStream::Create(ldsp_, move(observer));

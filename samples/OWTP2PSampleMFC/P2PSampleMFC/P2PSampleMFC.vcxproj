@@ -127,13 +127,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;WEBRTC_WIN;_ITERATOR_DEBUG_LEVEL=2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\YenBe\Documents\git\CS_WebRTC_Client_SDK_Windows.v4.3.1\include;C:\Users\YenBe\Documents\git\socket.io-client-cpp\src;C:\Program Files (x86)\IntelSWTools\Intel(R) Media SDK 2020 R1\Software Development Kit\include;C:\Program Files\OpenSSL-Win64\include;C:\Users\YenBe\Documents\workspace\boost_1_75_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\owt-client-native\src\talk\owt\sdk\include\cpp;C:\Users\YenBe\Documents\git\socket.io-client-cpp\src;C:\Program Files (x86)\IntelSWTools\Intel(R) Media SDK 2020 R1\Software Development Kit\include;C:\Program Files\OpenSSL-Win64\include;C:\Users\YenBe\Documents\workspace\boost_1_75_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>C:\Program Files (x86)\IntelSWTools\Intel(R) Media SDK 2020 R1\Software Development Kit\lib\x64;C:\Program Files\OpenSSL-Win64\lib;C:\Users\YenBe\Documents\workspace\boost_1_75_0\stage\lib;C:\Users\YenBe\Documents\git\socket.io-client-cpp\build\Debug;C:\Users\YenBe\Documents\git\owt-client-native\src\out\debug-x64\obj\talk\owt;C:\Users\YenBe\Documents\git\owt-client-native\src\out\debug-x64\obj\third_party\webrtc;C:\Users\YenBe\Documents\git\owt-client-native\src\out;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\IntelSWTools\Intel(R) Media SDK 2020 R1\Software Development Kit\lib\x64;C:\Program Files\OpenSSL-Win64\lib;C:\Users\YenBe\Documents\workspace\boost_1_75_0\stage\lib;C:\Users\YenBe\Documents\git\socket.io-client-cpp\build\Debug;C:\owt-client-native\src\out\debug-x64\obj\talk\owt;C:\owt-client-native\src\out\debug-x64\obj\third_party\webrtc;C:\owt-client-native\src\out;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sioclient_tls.lib;crypt32.lib;secur32.lib;ws2_32.lib;dmoguids.lib;msdmo.lib;wmcodecdspuuid.lib;amstrmid.lib;strmiids.lib;mfuuid.lib;mf.lib;mfplat.lib;d3d9.lib;d3d11.lib;dxgi.lib;dxva2.lib;owt-debug.lib;boost_date_time-vc142-mt-gd-x64-1_75.lib;boost_random-vc142-mt-gd-x64-1_75.lib;boost_system-vc142-mt-gd-x64-1_75.lib;libmfx_vs2015.lib</AdditionalDependencies>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>

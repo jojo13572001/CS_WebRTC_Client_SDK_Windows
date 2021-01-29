@@ -65,7 +65,7 @@ string getToken(const string& addr, bool verify_peer) {
   using boost::asio::ip::tcp;
   try {
     boost::asio::io_service io_service;
-    boost::asio::ssl::context context(boost::asio::ssl::context::sslv23);
+    boost::asio::ssl::context context(boost::asio::ssl::context::tlsv12);
     // Get a list of endpoints corresponding to the server name.
     tcp::resolver resolver(io_service);
     vector<string> list = split(addr, '/');
@@ -121,6 +121,12 @@ string getToken(const string& addr, bool verify_peer) {
     response_stream >> status_code;
     std::string status_message;
     std::getline(response_stream, status_message);
+    std::wostringstream logStr;
+    logStr << std::wstring(http_version.begin(), http_version.end()) 
+           << L" ,status: " << status_code << L" ,message: " 
+           << std::wstring(status_message.begin(), status_message.end()) << endl;
+    LOG(logStr.str());
+
     if (!response_stream || http_version.substr(0, 5) != "HTTP/") {
         LOG(L"Invalid response\n");
       return "";
@@ -137,9 +143,7 @@ string getToken(const string& addr, bool verify_peer) {
 
     // Process the response headers.
     std::string header;
-    std::wostringstream logStr;
-    
-    LOG(logStr.str());
+    logStr.str(L"");
     while (std::getline(response_stream, header) && header != "\r")
       logStr << std::wstring(header.begin(), header.end()) << endl;
       LOG(logStr.str());
@@ -448,7 +452,8 @@ void CConfSampleMFCDlg::OnBnClickedButton1()
   CWnd* forward_video_window = GetDlgItem(IDC_STATIC9);
   HWND forward_video_handle = forward_video_window->GetSafeHwnd();
   CConfServer serverUrlDlg;
-  serverUrlDlg.SetValue(L"https://172.21.4.95:3004/CreateToken");
+  serverUrlDlg.SetValue(L"https://localhost:3004/CreateToken");
+  //serverUrlDlg.SetValue(L"https://api.owt-sg.aws2.myviewboard.cloud/CreateToken");
   if (serverUrlDlg.DoModal() == IDOK) {
     // Connect to the server.
     IceServer ice;
@@ -524,20 +529,24 @@ void CConfSampleMFCDlg::OnBnClickedButton1()
             mix_subscription_ = subscription;
             remote_mixed_stream_->AttachVideoRenderer(render_window_);
             SetDlgItemText(IDC_EDIT1, L"Subscribe succeed");
+            LOG(L"Subscribe succeed\n");
           },
             [=](std::unique_ptr<Exception>) {
             SetDlgItemText(IDC_EDIT1, L"Subscribe failed");
+            LOG(L"Subscribe failed\n");
           });
         }
         SetDlgItemText(IDC_EDIT1, L"Join succeeded!");
+        LOG(L"Join succeeded!\n");
       },
         [=](unique_ptr<Exception> err) {
         SetDlgItemText(IDC_EDIT1, L"Join failed!");
+        LOG(L"Join failed!\n");
       }
       );
     }
     else {
-        cout << "Create token error!" << endl;
+        LOG(L"Create token error!\n");
     }
   }
 }
@@ -556,7 +565,7 @@ void CConfSampleMFCDlg::OnBnClickedButton4()
     return;
   if (!local_stream_.get()) {
     // TODO: Add your control notification handler code here
-#if 1  // Case 1: Local camera stream
+#if 0  // Case 1: Local camera stream
     lcsp_.reset(new LocalCameraStreamParameters(true, true));
     lcsp_->Resolution(1280, 720);
     int error_code = 0;
@@ -580,9 +589,10 @@ void CConfSampleMFCDlg::OnBnClickedButton4()
     local_stream_ = LocalStream::Create(lcsp, external_encoder);
 #endif
     // Case 4: local screen sharing stream.
-#if 0
+#if 1
     std::unique_ptr<LocalScreenStreamObserver> screen_observer(new LocalScreenObserver());
-    lcspscreen_.reset(new LocalDesktopStreamParameters(true, false, LocalDesktopStreamParameters::DesktopSourceType::kApplication));
+    lcspscreen_.reset(new LocalDesktopStreamParameters(false, true));
+    lcspscreen_->SourceType(LocalDesktopStreamParameters::DesktopSourceType::kFullScreen);
     local_stream_ = LocalStream::Create(lcspscreen_, std::move(screen_observer));
 #endif
   }
