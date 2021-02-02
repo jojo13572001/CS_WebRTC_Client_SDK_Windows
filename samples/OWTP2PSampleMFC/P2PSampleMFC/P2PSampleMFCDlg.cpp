@@ -197,7 +197,8 @@ void CP2PSampleMFCDlg::OnBnClickedConnectButton()
 	CWnd* video_window = GetDlgItem(IDC_VIDEO_RENDERER);
 	HWND video_handle = video_window->GetSafeHwnd();
 	CPeerServer peerServerDlg;
-	peerServerDlg.SetUrlValue(L"https://mrtc.myviewboard.cloud");
+	//peerServerDlg.SetUrlValue(L"https://mrtc.myviewboard.cloud");
+	peerServerDlg.SetUrlValue(L"https://localhost:8096");
 	peerServerDlg.SetIdValue(L"2");
 	if (peerServerDlg.DoModal() == IDOK) {
 		//Connect to the server.
