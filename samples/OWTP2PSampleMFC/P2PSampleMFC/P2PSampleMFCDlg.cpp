@@ -342,8 +342,8 @@ void CP2PSampleMFCDlg::OnBnClickedStatsButton()
 {
   if (publication_) {
     publication_->GetStats(
-      [=](std::shared_ptr<ConnectionStats> stats) {
-        int32_t transmit_bitrate = stats->video_bandwidth_stats.transmit_bitrate;
+      [=](std::shared_ptr<RTCStatsReport> stats) {
+        //int32_t transmit_bitrate = stats->video_bandwidth_stats.transmit_bitrate;
         MessageBox(_T("Get stats successfully!"), _T("Tips"), MB_ICONINFORMATION);
       },
       [=](std::unique_ptr<Exception> exception) {
