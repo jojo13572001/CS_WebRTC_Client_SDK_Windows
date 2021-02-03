@@ -5,6 +5,12 @@
 
 #pragma once
 
+#if DEBUG || _DEBUG
+#define LOG(x) OutputDebugStringW((std::wstring(L"[p2p]") + x).c_str())
+#else
+#define LOG(x)
+#endif
+
 #ifndef VC_EXTRALEAN
 #define VC_EXTRALEAN            // Exclude rarely-used stuff from Windows headers
 #endif

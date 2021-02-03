@@ -29,10 +29,11 @@ void P2PSocketSignalingChannel::Connect(
     connect_success_callback_ = on_success;
 
     std::map<std::string, std::string> query;
-    query.insert(std::pair<std::string, std::string>("clientVersion", "4.3"));
+    query.insert(std::pair<std::string, std::string>("clientVersion", "5.0"));
     query.insert(std::pair<std::string, std::string>("clientType", "cpp"));
     query.insert(std::pair<std::string, std::string>("token", token)); // TODO: parse token to get actual token.
 
+    connection_listener_->setTargetId(token);
     io_->set_open_listener(std::bind(&connection_listener::on_connected, connection_listener_.get()));
 
     sio::socket::ptr socket = io_->socket();
